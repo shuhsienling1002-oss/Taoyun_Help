@@ -10,6 +10,31 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
+# ==========================================
+# 🔒 登入驗證 (密碼鎖設定)
+# ==========================================
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+
+if not st.session_state.authenticated:
+    st.title("🔒 三一協會會員專區")
+    st.caption("請輸入密碼以存取福利試算系統")
+    
+    password_input = st.text_input("請輸入密碼:", type="password")
+    
+    if st.button("登入"):
+        if password_input == "1234":
+            st.session_state.authenticated = True
+            st.rerun()  # 密碼正確，重新整理進入主畫面
+        else:
+            st.error("密碼錯誤，請再試一次 ❌")
+            
+    st.stop()  # ⛔ 重要：未登入前停止執行下方所有程式碼
+
+# ==========================================
+# (以下是原本的內容，只有登入後才會看到)
+# ==========================================
+
 # CSS: 大字體、清晰卡片
 st.markdown("""
     <style>
@@ -34,6 +59,11 @@ st.markdown("""
 # ==========================================
 st.title("👵 三一協會 kalas 福利站")
 st.caption("👇 專屬桃園原住民長者的福利試算 (Taoyuan City)")
+
+# 加入登出按鈕
+if st.button("🔒 登出系統", type="secondary"):
+    st.session_state.authenticated = False
+    st.rerun()
 
 with st.expander("📝 設定資料 (點此展開)", expanded=True):
     age = st.number_input("長輩年齡 (Mihecaan)", 50, 120, 55) # 桃園福利多從55歲開始
