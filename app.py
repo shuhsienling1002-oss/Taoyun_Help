@@ -157,12 +157,13 @@ st.markdown("---")
 st.subheader("📞 諮詢窗口")
 c1, c2 = st.columns(2)
 with c1:
-    st.markdown("**桃園市原民局**：03-3322101")
+    st.markdown("**桃園市相關行政單位**")
     st.markdown("**教材設計**：三一協會")
 with c2:
     st.markdown("**長照專線**：1966")
     st.markdown("**市民專線**：1999")
 
 st.caption("⚠️ 本系統僅供內部教學使用，實際資格以政府機關核定為準。")
+
 
 
